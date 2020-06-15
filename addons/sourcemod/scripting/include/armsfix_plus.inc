@@ -101,7 +101,7 @@ native bool AF_RequestArmsUpdate(int client);
  * @param remove_arms   true to remove arms on disable
  * @no return
  *********************************************************/
-native void AF_DisableClientArmsUpdate(int client, bool disable = true, bool remove_arms = false);
+native void AF_DisableClientArmsUpdate(int client, bool disable = true, bool remove_arms = true);
 
 
 public Extension __ext_armsfix_plus = 
