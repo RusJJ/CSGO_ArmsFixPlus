@@ -5,21 +5,22 @@
 
 
 enum AF_UpdateReason {
-	AF_PlayerSpawned			= 0,
-	AF_PluginRequested			= 1,
-	AF_BlockedPluginRequested	= 2,
-	AF_OnDisableAndUpdate		= 3,
-	AF_ChangedByPlugin			= 4,
+    AF_PlayerSpawned            = 0,
+    AF_PluginRequested          = 1,
+    AF_BlockedPluginRequested   = 2,
+    AF_OnDisableAndUpdate       = 3,
+    AF_ChangedByPlugin          = 4,
 };
 
 /*********************************************************
  * Called when arms updated
  *
- * @param client		The client index of the player
- * @param res			Update reason
+ * @param client        The client index of the player
+ * @param res           Update reason
  * @no return
  *********************************************************/
 forward void AF_OnArmsUpdate(int client, AF_UpdateReason res);
+
 
 /*********************************************************
  * Get ArmsFix+ version
@@ -27,6 +28,7 @@ forward void AF_OnArmsUpdate(int client, AF_UpdateReason res);
  * @return              Version number
  *********************************************************/
 native int AF_Version();
+
 
 /*********************************************************
  * Change default arms models
@@ -36,12 +38,13 @@ native int AF_Version();
  *********************************************************/
 native void AF_SetDefaultArmsModel(char[] mdl_path);
 
+
 /*********************************************************
  * Resets default arms models
  *
  * @no return
  *********************************************************/
-native void AF_ResetDefaultArmsModel(int team);
+native void AF_ResetDefaultArmsModel();
 
 
 /*********************************************************
@@ -97,6 +100,7 @@ native int AF_GetDefaultArmsModel(char[] dest, int maxlen);
  * Simply SET arms model (like on player model change)
  *
  * @param client        Client index (not userid)
+ * @param force         Update arms RIGHT NOW (wont be updated if arms disabled)
  * @return              true is changed to custom, false otherwise
  *********************************************************/
 native bool AF_RequestArmsUpdate(int client, bool force = false);
@@ -134,34 +138,34 @@ native bool AF_ForceArmsUpdate(int client, bool ignore_blocked = false);
 
 public Extension __ext_armsfix_plus = 
 {
-	name = "ArmsFix_Plus",
-	file = "ArmsFix_Plus.ext",
+    name = "ArmsFix_Plus",
+    file = "ArmsFix_Plus.ext",
 #if defined AUTOLOAD_EXTENSIONS
-	autoload = 1,
+    autoload = 1,
 #else
-	autoload = 0,
+    autoload = 0,
 #endif
 #if defined REQUIRE_EXTENSIONS
-	required = 1,
+    required = 1,
 #else
-	required = 0,
+    required = 0,
 #endif
 };
 
 #if !defined REQUIRE_EXTENSIONS
 public __ext_armsfix_plus_SetNTVOptional()
 {
-	MarkNativeAsOptional("AF_Version");
-	MarkNativeAsOptional("AF_SetDefaultArmsModel");
-	MarkNativeAsOptional("AF_ResetDefaultArmsModel");
-	MarkNativeAsOptional("AF_HasClientCustomArms");
-	MarkNativeAsOptional("AF_SetClientArmsModel");
-	MarkNativeAsOptional("AF_RemoveClientArmsModel");
-	MarkNativeAsOptional("AF_GetClientArmsModel");
-	MarkNativeAsOptional("AF_GetDefaultArmsModel");
-	MarkNativeAsOptional("AF_RequestArmsUpdate");
-	MarkNativeAsOptional("AF_DisableClientArmsUpdate");
-	MarkNativeAsOptional("AF_IsClientArmsNotUpdating");
-	MarkNativeAsOptional("AF_ForceArmsSet");
+    MarkNativeAsOptional("AF_Version");
+    MarkNativeAsOptional("AF_SetDefaultArmsModel");
+    MarkNativeAsOptional("AF_ResetDefaultArmsModel");
+    MarkNativeAsOptional("AF_HasClientCustomArms");
+    MarkNativeAsOptional("AF_SetClientArmsModel");
+    MarkNativeAsOptional("AF_RemoveClientArmsModel");
+    MarkNativeAsOptional("AF_GetClientArmsModel");
+    MarkNativeAsOptional("AF_GetDefaultArmsModel");
+    MarkNativeAsOptional("AF_RequestArmsUpdate");
+    MarkNativeAsOptional("AF_DisableClientArmsUpdate");
+    MarkNativeAsOptional("AF_IsClientArmsNotUpdating");
+    MarkNativeAsOptional("AF_ForceArmsSet");
 }
 #endif
