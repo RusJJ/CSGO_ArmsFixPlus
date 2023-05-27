@@ -1,0 +1,5 @@
+Release/
+.vs/
+src/msvc15/ArmsFix.vcxproj.filters
+src/msvc15/ArmsFix.vcxproj.user
+*.bak
